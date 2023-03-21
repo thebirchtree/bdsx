@@ -28,7 +28,6 @@ example_and_test/actor-effects.ts
 example_and_test/attribute.ts
 example_and_test/blockcustomname.ts
 example_and_test/customcommand.ts
-
 example_and_test/entity.ts
 example_and_test/event-knockback.ts
 example_and_test/event-playerdropitem.ts
@@ -58,14 +57,16 @@ example_and_test/actor-effects.ts
 example_and_test/attribute.ts
 example_and_test/blockcustomname.ts
 example_and_test/customcommand.ts
-
+example_and_test/custommotd.ts
 example_and_test/entity.ts
 example_and_test/event-knockback.ts
 example_and_test/event-playerdropitem.ts
 example_and_test/executecommand.ts
 example_and_test/form.ts
 example_and_test/hidemapmarker.ts
-
+example_and_test/index.ts
+example_and_test/inventory.ts
+example_and_test/ipban.ts
 example_and_test/lowlevel-apihooking.ts
 example_and_test/lowlevel-asm.ts
 example_and_test/lowlevel-dll.ts
@@ -77,8 +78,9 @@ example_and_test/net-printall.ts
 example_and_test/net-rawpacket.ts
 example_and_test/net-scorepacket.ts
 example_and_test/net-sendhook.ts
-
+example_and_test/net-transferserver.ts
 example_and_test/setblock.ts
 example_and_test/storage.ts
 example_and_test/test.ts
 example_and_test/vulnerabilities.ts
+example_and_test/custommotd.ts
