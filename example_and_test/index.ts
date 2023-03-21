@@ -2,11 +2,13 @@
 // Console Output
 console.log("[example/index] Hello, World!");
 
-import "./actor-effects";
+/*import "./actor-effects";
 import "./attribute";
 import "./blockcustomname";
 import "./customcommand";
+*/
 import "./custommotd";
+/*
 import "./event-knockback";
 import "./event-playerdropitem";
 import "./executecommand";
@@ -20,20 +22,25 @@ import "./lowlevel-dll";
 import "./lowlevel-nativeclass";
 import "./lowlevel-string-and-vector";
 import "./nbt-sign";
+*/
 import "./net-chat";
 import "./net-disconnect";
-import "./net-halfmove";
+//import "./net-halfmove";
 import "./net-login";
-import "./net-ping";
-import "./net-printall";
+
+//import "./net-ping";
+//import "./net-printall";
+/*
 import "./net-rawpacket";
 import "./net-scorepacket";
-import "./net-sendhook";
+import "./net-sendhook";*/
 import "./net-transferserver";
+/*
 import "./setblock";
 import "./settitle";
 import "./simulatedplayer";
 import "./storage";
 import "./test";
 import "./vulnerabilities";
-// import './permissions';
+*/
+ //import './permissions';
