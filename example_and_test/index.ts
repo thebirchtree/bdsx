@@ -1,6 +1,6 @@
 // this is imported from ../index.ts
 // Console Output
-console.log("[example/index] Hello, World!");
+console.log("[example/index] LoadingExampleTemplates");
 
 /*import "./actor-effects";
 import "./attribute";
