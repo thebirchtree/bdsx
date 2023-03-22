@@ -1,5 +1,7 @@
 node_modules
 /bedrock_server/*
+!/bedrock_server/server.properties
+!/bedrock_server/prefix.json
 /storage/*
 /.key/*
 !/bedrock_server/vcruntime140_1_.dll
