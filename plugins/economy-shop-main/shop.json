@@ -262,6 +262,12 @@
       }
     ],
     "ores": [
+       {
+        "icon": "textures/items/emerald",
+        "path": "path",
+        "item": "minecraft:emerald",
+        "price": 1000
+      },
       {
         "icon": "textures/items/coal",
         "path": "path",
