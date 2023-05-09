@@ -240,7 +240,7 @@ launcher_1.bedrockServer.withLoading().then(() => {
     // hook after
     asmcode_1.asmcode.onPacketAfter = makefunc_1.makefunc.np(onPacketAfter, nativetype_1.void_t, null, packet_1.Packet, networkidentifier_1.NetworkIdentifier);
     asmcode_1.asmcode.handlePacket = symbols_1.proc[packetHandleSymbol];
-    prochacker_1.procHacker.patching("hook-packet-after", packetizeSymbol, 0x53b, asmcode_1.asmcode.packetAfterHook, // original code depended
+    prochacker_1.procHacker.patching("hook-packet-after", packetizeSymbol, 0x508, asmcode_1.asmcode.packetAfterHook, // original code depended
     assembler_1.Register.rax, true, [
         0x49,
         0x8b,
