@@ -824,7 +824,6 @@ Tester.concurrency(
                 ["EventPacket", "TelemetryEventPacket"],
                 ["AutomationClientConnectPacket", "WSConnectPacket"],
                 ["StructureTemplateDataResponsePacket", "StructureTemplateDataExportPacket"],
-                ["CompressedBiomeDefinitionListPacket", "CompressedBiomeDefinitionList"],
             ]);
 
             for (const id in PacketIdToType) {
