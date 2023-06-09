@@ -1,19 +1,17 @@
 node_modules
 /bedrock_server/*
+!/bedrock_server/server.properties
+!/bedrock_server/prefix.json
 /storage/*
 /.key/*
 !/bedrock_server/vcruntime140_1_.dll
 !/bedrock_server/dbghelp.dll
 /npm-debug.log
-/pdbcache_by_example.ini
-*.js
-!/bdsx/index.js
-!/bdsx/legacy.js
-!/bdsx/chat.js
-!/bdsx/exehacker.js
-!/bdsx/servercontrol.js
-!/bdsx/native.js
-!/bdsx/netevent.js
+	@@ -17,3 +18,69 @@ node_modules
 !/bdsx/checkgate.js
 !/bdsx/asm/asmcode.js
 /plugin-example/package-lock.json
+bedrock_server/server.properties
+package-lock.json
+plugins/bdsx-birchsoscer/
+plugins/simple-warp/
