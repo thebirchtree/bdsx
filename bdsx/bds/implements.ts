@@ -13,7 +13,11 @@ import { bedrockServer } from "../launcher";
 import { makefunc } from "../makefunc";
 import { mce } from "../mce";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { NativeClass, NativeClassType, nativeClass, nativeField, vectorDeletingDestructor } from "../nativeclass";
+=======
+import { NativeClass, nativeClass, NativeClassType, nativeField, vectorDeletingDestructor } from "../nativeclass";
+>>>>>>> parent of aa7b5c3d (Revert "Revert "Merge remote-tracking branch 'upstream/master'"")
 =======
 import { NativeClass, nativeClass, NativeClassType, nativeField, vectorDeletingDestructor } from "../nativeclass";
 >>>>>>> parent of aa7b5c3d (Revert "Revert "Merge remote-tracking branch 'upstream/master'"")
@@ -1311,9 +1315,13 @@ procHacker.hookingRawWithCallOriginal("??1Actor@@UEAA@XZ", asmcode.actorDestruct
 // player.ts
 Player.abstract({
 <<<<<<< HEAD
+<<<<<<< HEAD
     enderChestContainer: [EnderChestContainer.ref(), 0xcc0], // accessed in Player::Player (the line between two if-else statements, the first if statement calls EnderChestContainer::EnderChestContainer)
     playerUIContainer: [PlayerUIContainer, 0xd78], // accessed in Player::readAdditionalSaveData when calling PlayerUIContainer::load
     gameMode: [GameMode.ref(), 0xea8], // accessed in ServerNetworkHandler::handle(NetworkIdentifier const &,PlayerActionPacket const &) when calling GameMode::getDestroyRate
+=======
+    playerUIContainer: [PlayerUIContainer, 0xd78], // accessed in Player::readAdditionalSaveData when calling PlayerUIContainer::load
+>>>>>>> parent of aa7b5c3d (Revert "Revert "Merge remote-tracking branch 'upstream/master'"")
 =======
     playerUIContainer: [PlayerUIContainer, 0xd78], // accessed in Player::readAdditionalSaveData when calling PlayerUIContainer::load
 >>>>>>> parent of aa7b5c3d (Revert "Revert "Merge remote-tracking branch 'upstream/master'"")
