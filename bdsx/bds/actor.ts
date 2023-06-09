@@ -6,8 +6,8 @@ import { StaticPointer, VoidPointer } from "../core";
 import { CxxVector } from "../cxxvector";
 import { events } from "../event";
 import { mangle } from "../mangle";
-import { AbstractClass, NativeClass, NativeStruct, nativeClass, nativeClassUtil, nativeField } from "../nativeclass";
-import { CxxString, bin64_t, bool_t, float32_t, int32_t, int64_as_float_t, uint8_t } from "../nativetype";
+import { AbstractClass, nativeClass, NativeClass, nativeClassUtil, nativeField, NativeStruct } from "../nativeclass";
+import { bin64_t, bool_t, CxxString, float32_t, int32_t, int64_as_float_t, uint8_t } from "../nativetype";
 import { AttributeId, AttributeInstance, BaseAttributeMap } from "./attribute";
 import { Block, BlockSource } from "./block";
 import { BlockPos, Vec2, Vec3 } from "./blockpos";
@@ -939,7 +939,8 @@ export class Actor extends AbstractClass {
      */
     hasEffect(id: MobEffectIds): boolean {
         const effect = MobEffect.create(id);
-        return this._hasEffect(effect);
+        const retval = this._hasEffect(effect);
+        return retval;
     }
 
     protected _getEffect(mobEffect: MobEffect): MobEffectInstance | null {
@@ -950,7 +951,8 @@ export class Actor extends AbstractClass {
      */
     getEffect(id: MobEffectIds): MobEffectInstance | null {
         const effect = MobEffect.create(id);
-        return this._getEffect(effect);
+        const retval = this._getEffect(effect);
+        return retval;
     }
     removeAllEffects(): void {
         abstract();
@@ -1046,7 +1048,8 @@ export class Actor extends AbstractClass {
     hurt(sourceOrCause: ActorDamageSource | ActorDamageCause, damage: number, knock: boolean, ignite: boolean): boolean {
         const isSource = sourceOrCause instanceof ActorDamageSource;
         const source = isSource ? sourceOrCause : ActorDamageSource.create(sourceOrCause);
-        return this.hurt_(source, damage, knock, ignite);
+        const retval = this.hurt_(source, damage, knock, ignite);
+        return retval;
     }
     /**
      * Changes a specific status flag of the entity
@@ -1553,7 +1556,8 @@ export class Mob extends Actor {
     hurtEffects(sourceOrCause: ActorDamageCause | ActorDamageSource, damage: number, knock: boolean, ignite: boolean): boolean {
         const isSource = sourceOrCause instanceof ActorDamageSource;
         const source = isSource ? sourceOrCause : ActorDamageSource.create(sourceOrCause);
-        return this.hurtEffects_(source, damage, knock, ignite);
+        const retval = this.hurtEffects_(source, damage, knock, ignite);
+        return retval;
     }
     getArmorCoverPercentage(): float32_t {
         abstract();
