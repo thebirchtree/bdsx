@@ -963,11 +963,9 @@ export class Player extends Mob implements HasStorage {
     getInputMode(): InputMode {
         abstract();
     }
-
-    // removed
-    // setInputMode(mode: InputMode): void {
-    //     abstract();
-    // }
+    setInputMode(mode: InputMode): void {
+        abstract();
+    }
     die(damageSource: ActorDamageSource): void {
         this.setAttribute(AttributeId.Health, 0);
         return super.die(damageSource);

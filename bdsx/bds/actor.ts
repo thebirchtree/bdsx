@@ -477,6 +477,9 @@ export class ActorLink extends NativeStruct {
 }
 
 @nativeClass(null)
+export class EntityContext extends AbstractClass {}
+
+@nativeClass(null)
 export class OwnerStorageEntity extends AbstractClass {
     _getStackRef(): EntityContext {
         abstract();
@@ -520,9 +523,6 @@ export class EntityContextBase extends AbstractClass {
         return this.enttRegistry;
     }
 }
-
-@nativeClass(null)
-export class EntityContext extends EntityContextBase {}
 
 export class Actor extends AbstractClass {
     vftable: VoidPointer;
