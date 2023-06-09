@@ -105,9 +105,6 @@ export class DurabilityItemComponent extends ItemComponent {
 
 export class DisplayNameItemComponent extends ItemComponent {}
 
-/**
- * @deprecated removed
- */
 export class DyePowderItemComponent extends ItemComponent {}
 
 export class EntityPlacerItemComponent extends ItemComponent {
@@ -133,9 +130,6 @@ export class FuelItemComponent extends ItemComponent {}
 
 export class IconItemComponent extends ItemComponent {}
 
-/**
- * @deprecated removed
- */
 export class KnockbackResistanceItemComponent extends ItemComponent {
     getProtectionValue(): number {
         abstract();
@@ -156,21 +150,15 @@ export class ProjectileItemComponent extends ItemComponent {
 }
 
 export class RecordItemComponent extends ItemComponent {
-    // removed
-    // getAlias(): string {
-    //     abstract();
-    // }
+    getAlias(): string {
+        abstract();
+    }
 }
 
 export class RenderOffsetsItemComponent extends ItemComponent {}
 
-/**
- * TODO: implement enum
- */
-type RepairItemResult = number;
-
 export class RepairableItemComponent extends ItemComponent {
-    handleItemRepair(itemStackBase: ItemStackBase, _itemStackBase: ItemStackBase): RepairItemResult {
+    handleItemRepair(itemStackBase: ItemStackBase, _itemStackBase: ItemStackBase): number {
         abstract();
     }
 }
