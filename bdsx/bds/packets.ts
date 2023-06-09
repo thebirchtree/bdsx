@@ -2234,41 +2234,6 @@ export class UpdateClientInputLocksPacket extends Packet {
     // unknown
 }
 
-@nativeClass(null)
-export class ClientCheatAbilityPacket extends Packet {
-    // unknown
-}
-
-@nativeClass(null)
-export class CameraPresetsPacket extends Packet {
-    // unknown
-}
-
-@nativeClass(null)
-export class UnlockedRecipesPacket extends Packet {
-    // unknown
-}
-
-@nativeClass(null)
-export class CameraInstructionPacket extends Packet {
-    // unknown
-}
-
-@nativeClass(null)
-export class CompressedBiomeDefinitionListPacket extends Packet {
-    // unknown
-}
-
-@nativeClass(null)
-export class TrimDataPacket extends Packet {
-    // unknown
-}
-
-@nativeClass(null)
-export class OpenSignPacket extends Packet {
-    // unknown
-}
-
 export const PacketIdToType = {
     0x01: LoginPacket,
     0x02: PlayStatusPacket,
@@ -2464,13 +2429,6 @@ export const PacketIdToType = {
     0xc2: GameTestRequestPacket,
     0xc3: GameTestResultsPacket,
     0xc4: UpdateClientInputLocksPacket,
-    0xc5: ClientCheatAbilityPacket,
-    0xc6: CameraPresetsPacket,
-    0xc7: UnlockedRecipesPacket,
-    0x12c: CameraInstructionPacket,
-    0x12d: CompressedBiomeDefinitionListPacket,
-    0x12e: TrimDataPacket,
-    0x12f: OpenSignPacket,
 };
 export type PacketIdToType = {
     [key in keyof typeof PacketIdToType]: InstanceType<(typeof PacketIdToType)[key]>;

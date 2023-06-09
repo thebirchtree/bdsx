@@ -222,6 +222,26 @@ export enum MinecraftPacketIds { // int32_t
     GameTestRequest = 0xc2,
     GameTestResults = 0xc3,
     UpdateClientInputLocks = 0xc4,
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    ClientCheatAbilityPacket = 0xc5,
+    CameraPresetsPacket = 0xc6,
+    UnlockedRecipesPacket = 0xc7,
+    CameraInstructionPacket = 0x12c,
+    CompressedBiomeDefinitionListPacket = 0x12d,
+    TrimDataPacket = 0x12e,
+    OpenSignPacket = 0x12f,
+=======
+>>>>>>> parent of aa7b5c3d (Revert "Revert "Merge remote-tracking branch 'upstream/master'"")
+=======
+>>>>>>> parent of aa7b5c3d (Revert "Revert "Merge remote-tracking branch 'upstream/master'"")
+=======
+=======
+>>>>>>> parent of 3e1285ce (Revert "Merge remote-tracking branch 'upstream/master'")
     /** @deprecated skip Packet ends */
     ClientCheatAbilityPacket = 0xc5,
     ClientCheatAbility = 0xc5,
@@ -243,5 +263,13 @@ export enum MinecraftPacketIds { // int32_t
     /** @deprecated skip Packet ends */
     OpenSignPacket = 0x12f,
     OpenSign = 0x12f,
+<<<<<<< HEAD
+>>>>>>> parent of c33967c8 (Revert "Merge remote-tracking branch 'upstream/master'")
+=======
+>>>>>>> parent of 3274ec13 (Revert "Revert "Merge remote-tracking branch 'upstream/master'"")
+=======
+>>>>>>> parent of 3e1285ce (Revert "Merge remote-tracking branch 'upstream/master'")
+=======
+>>>>>>> parent of 846dcf4e (Merge remote-tracking branch 'upstream/master')
 }
 (MinecraftPacketIds as any).__proto__ = null;
