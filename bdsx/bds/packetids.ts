@@ -227,6 +227,7 @@ export enum MinecraftPacketIds { // int32_t
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     ClientCheatAbilityPacket = 0xc5,
     CameraPresetsPacket = 0xc6,
     UnlockedRecipesPacket = 0xc7,
@@ -268,5 +269,7 @@ export enum MinecraftPacketIds { // int32_t
 >>>>>>> parent of 3274ec13 (Revert "Revert "Merge remote-tracking branch 'upstream/master'"")
 =======
 >>>>>>> parent of 3e1285ce (Revert "Merge remote-tracking branch 'upstream/master'")
+=======
+>>>>>>> parent of 846dcf4e (Merge remote-tracking branch 'upstream/master')
 }
 (MinecraftPacketIds as any).__proto__ = null;
