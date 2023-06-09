@@ -10,13 +10,14 @@ import { Block } from "./block";
 import { BlockPos, Vec3 } from "./blockpos";
 import type { CommandPermissionLevel } from "./command";
 import { Certificate } from "./connreq";
+import type { GameMode } from "./gamemode";
 import { HashedString } from "./hashedstring";
-import { ArmorSlot, ContainerId, Item, ItemStack, PlayerInventory, PlayerUIContainer, PlayerUISlot } from "./inventory";
+import { ArmorSlot, ContainerId, EnderChestContainer, Item, ItemStack, PlayerInventory, PlayerUIContainer, PlayerUISlot } from "./inventory";
 import type { NetworkIdentifier, ServerNetworkHandler } from "./networkidentifier";
 import type { Packet } from "./packet";
 import {
-    BossEventPacket,
     PlayerListEntry as _PlayerListEntry,
+    BossEventPacket,
     PlaySoundPacket,
     ScorePacketInfo,
     SetDisplayObjectivePacket,
@@ -51,7 +52,9 @@ interface RawTextObject {
 }
 
 export class Player extends Mob implements HasStorage {
+    enderChestContainer: EnderChestContainer;
     playerUIContainer: PlayerUIContainer;
+    gameMode: GameMode;
     deviceId: string;
 
     /** @deprecated Use `this.getSpawnDimension()` instead */
@@ -960,9 +963,11 @@ export class Player extends Mob implements HasStorage {
     getInputMode(): InputMode {
         abstract();
     }
-    setInputMode(mode: InputMode): void {
-        abstract();
-    }
+
+    // removed
+    // setInputMode(mode: InputMode): void {
+    //     abstract();
+    // }
     die(damageSource: ActorDamageSource): void {
         this.setAttribute(AttributeId.Health, 0);
         return super.die(damageSource);
