@@ -1,7 +1,7 @@
 import { events } from "bdsx/event";
 import { bedrockServer } from "bdsx/launcher";
 
-const name = "Valeria Alion";
+const name = "BDSX-Example-Server";
 
 let rainbowOffset = 0;
 const rainbow = ["§c", "§6", "§e", "§a", "§9", "§b", "§d"];
