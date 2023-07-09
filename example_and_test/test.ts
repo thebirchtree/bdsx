@@ -42,7 +42,7 @@ import { command, CommandFieldOptions } from "bdsx/command";
 import { CommandParameterType } from "bdsx/commandparam";
 import { CommandResultType } from "bdsx/commandresult";
 import { AttributeName, CANCEL } from "bdsx/common";
-import { NativePointer } from "bdsx/core";
+import { NativePointer, StaticPointer } from "bdsx/core";
 import { CxxMap } from "bdsx/cxxmap";
 import { CxxVector, CxxVectorToArray } from "bdsx/cxxvector";
 import { disasm } from "bdsx/disassembler";
@@ -92,8 +92,8 @@ function checkCommandRegister(
     tester: Tester,
     testname: string,
     testcases: [CommandParameterType<any> | [CommandParameterType<any>, CommandFieldOptions | boolean], string | null, any][],
-    opts: { throughConsole?: boolean; noRun?: boolean } = {},
-): Promise<PromiseFunc> {
+    opts: { throughConsole?: boolean } = {},
+): PromiseFunc {
     const paramsobj: Record<string, CommandParameterType<any> | [CommandParameterType<any>, CommandFieldOptions | boolean]> = {};
     const n = testcases.length;
     for (let i = 0; i < n; i++) {
@@ -127,17 +127,23 @@ function checkCommandRegister(
         return new Promise<PromiseFunc>((resolve, reject) => {
             const outputcb = (output: string) => {
                 if (output === "passed") {
+                    clearTimeout(timeout);
                     events.commandOutput.remove(outputcb);
                     resolve(run);
                     return CANCEL;
                 }
                 if (output === "failed") {
+                    clearTimeout(timeout);
                     events.commandOutput.remove(outputcb);
                     reject(Error(`${cmdname} failed`));
                     return CANCEL;
                 }
             };
             events.commandOutput.on(outputcb);
+
+            const timeout = setTimeout(()=>{
+                reject(Error(`${cmdname} does not callback`));
+            }, 3000);
 
             if (opts.throughConsole) {
                 bedrockServer.executeCommandOnConsole(cmdline);
@@ -152,8 +158,7 @@ function checkCommandRegister(
             }
         });
     }
-    if (opts.noRun) return Promise.resolve(run);
-    return run();
+    return run;
 }
 
 @nativeClass()
@@ -698,6 +703,15 @@ Tester.concurrency(
             v.destruct();
         },
 
+        async commandregistery() {
+            const sig = bedrockServer.commandRegistry.findCommand('give')!;
+            this.equals(sig.command, 'give');
+            this.equals(sig.description, 'commands.give.description');
+            console.log(hex(sig.as(StaticPointer).getBuffer(8*16, 8*8), 8));
+            console.log(sig.overloads.join(','));
+            this.equals(sig.permissionLevel, CommandPermissionLevel.Operator);
+        },
+
         async command() {
             // command hook test, error test, parameter type test
             let passed = false;
@@ -741,17 +755,17 @@ Tester.concurrency(
             // command register test, parameter test
             await checkCommandRegister(this, "cmdtest", [], {
                 throughConsole: true,
-            });
-            await checkCommandRegister(this, "cmdtest2", []);
-            await checkCommandRegister(this, "cmdtest3", [[CxxString, "a", "a"]]);
+            })();
+            await checkCommandRegister(this, "cmdtest2", [])();
+            await checkCommandRegister(this, "cmdtest3", [[CxxString, "a", "a"]])();
             await checkCommandRegister(this, "cmdtest4", [
                 [CxxString, "a", "a"],
                 [[CxxString, true], null, undefined],
-            ]);
+            ])();
 
             const tests: PromiseFunc[] = [];
             for (let i = 0; i < 100; i++) {
-                tests.push(await checkCommandRegister(this, "repeat" + i, [[CxxString, "a", "a"]], { noRun: true }));
+                tests.push(checkCommandRegister(this, "repeat" + i, [[CxxString, "a", "a"]]));
             }
             for (const test of tests) {
                 await test();
@@ -764,7 +778,7 @@ Tester.concurrency(
 
             const ts_enum = command.enum("DimensionId", DimensionId);
 
-            await checkCommandRegister(this, "mappercheck", [[enumtype, "enum1", "enum1"]]);
+            await checkCommandRegister(this, "mappercheck", [[enumtype, "enum1", "enum1"]])();
             await checkCommandRegister(this, "mappers", [
                 // Tests for enums with strings and the string mapper
                 [enumtype, "ENUM1", "enum1"],
@@ -775,7 +789,7 @@ Tester.concurrency(
                 [ts_enum, "overworld", 0],
                 [ts_enum, "Nether", 1],
                 [ts_enum, "THEEND", 2],
-            ]);
+            ])();
         },
 
         async commandrawenum() {
@@ -788,14 +802,14 @@ Tester.concurrency(
                     [command.rawEnum("IntGameRule"), "maxcommandchainlength", "maxcommandchainlength"], // Test for built-in enums with strings
                     [command.rawEnum("EntityType"), "minecraft:zombie", "minecraft:zombie"], // Test for built-in enums with custom type (ActorDefinitionIdentifier for this case, but maps to string)
                     [command.rawEnum("Enchant"), "fire_protection", "fire_protection"],
-                ]);
+                ])();
             }
 
             // await checkCommandRegister('extends', [
             //     [command.enum('EntityType', {a: 0}), 'a', 0], // Test for built-in enums with custom type (ActorDefinitionIdentifier for this case, but maps to number) and the new value 'a' as 0
             //     [command.enum('EntityType', 'custom'), 'custom', 'custom'], // Test for built-in enums with custom type (ActorDefinitionIdentifier for this case, but maps to string) and the new value 'custom'
             //     [command.enum('Difficulty', 'aaa'), 'aaa', 'aaa'], // Test for built-in enums and the new value 'aaa'
-            // ]);
+            // ])();
         },
 
         async commandsoftenum() {
@@ -803,7 +817,7 @@ Tester.concurrency(
                 [command.softEnum("Soft1", "softenum"), "anything", "anything"], // Test for soft enums
                 [command.softEnum("Soft2", "first", "Second!!", "THI R D"), '"thi r d"', "thi r d"], // Test for soft enums
                 [command.softEnum("Tool", "Override", "another"), "Override", "Override"], // Test for built-in soft enums with new values
-            ]);
+            ])();
         },
 
         async checkPacketNames() {
