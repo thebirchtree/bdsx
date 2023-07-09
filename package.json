@@ -38,7 +38,6 @@
     "@bdsx/bdsx-birchsoscer": "file:plugins/bdsx-birchsoscer",
     "@bdsx/economy-shop-main": "file:plugins/economy-shop-main",
     "@bdsx/economy-x": "file:plugins/economy-x",
-    "@bdsx/multiworlds-main": "file:plugins/multiworlds-main",
     "@bdsx/simple-warp": "file:plugins/simple-warp",
     "@bdsx/simple-warp-1.0.0": "file:plugins/simple-warp-1.0.0"
   },
