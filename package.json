@@ -20,6 +20,11 @@
     "pdbcachegen": "bedrock_server\\pdbcachegen.exe \"./bedrock_server/bedrock_server.exe\" \"./bedrock_server/pdbcache.bin\""
   },
   "dependencies": {
+    "@bdsx/backup": "^1.1.0",
+    "@bdsx/bdsx-birchsoscer": "file:plugins/bdsx-birchsoscer",
+    "@bdsx/economy-shop-main": "file:plugins/economy-shop-main",
+    "@bdsx/economy-x": "file:plugins/economy-x",
+    "@bdsx/simple-warp": "file:plugins/simple-warp",
     "bdsx": "file:bdsx",
     "blessed": "^0.1.81",
     "colors": "1.4.0 || ^1.4.3",
@@ -33,12 +38,7 @@
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
     "typescript": "^4.8.4",
-    "unzipper": "^0.10.11",
-    "@bdsx/backup": "file:plugins/backup",
-    "@bdsx/bdsx-birchsoscer": "file:plugins/bdsx-birchsoscer",
-    "@bdsx/economy-shop-main": "file:plugins/economy-shop-main",
-    "@bdsx/economy-x": "file:plugins/economy-x",
-    "@bdsx/simple-warp": "file:plugins/simple-warp"
+    "unzipper": "^0.10.11"
   },
   "devDependencies": {
     "@actions/core": "^1.10.0",

@@ -9,8 +9,8 @@ backupManager.init({
     skipIfNoActivity: true,
     backupOnPlayerConnected: false,
     backupOnPlayerDisconnected: true,
-    interval: 120,
-    minIntervalBetweenBackups: 120,
+    interval: 360,
+    minIntervalBetweenBackups: 30,
 }).then((res) => {
     console.log(`backup manager initiated`);
 });
