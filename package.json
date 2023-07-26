@@ -37,8 +37,8 @@
     "tslib": "^2.3.1",
     "typescript": "^4.8.4",
     "unzipper": "^0.10.11",
-    "@bdsx/bdsx-birchsoscer": "file:plugins/bdsx-birchsoscer",
-    "@bdsx/simple-warp": "file:plugins/simple-warp"
+    "@bdsx/simple-warp": "file:plugins/simple-warp",
+    "@bdsx/bdsx-sos9533scr": "file:plugins/bdsx-sos9533scr"
   },
   "devDependencies": {
     "@actions/core": "^1.10.0",
