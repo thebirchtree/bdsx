@@ -175,6 +175,19 @@
         "price": 7
       },
       {
+        "icon": "textures/items/fish_raw",
+        "path": "path",
+        "item": "minecraft:cod",
+        "price": 2
+      },
+      {
+        "icon": "textures/items/fish_salmon_raw",
+        "path": "path",
+        "item": "minecraft:salmon",
+        "price": 2
+      },
+
+      {
         "icon": "textures/items/apple",
         "path": "path",
         "item": "minecraft:apple",
