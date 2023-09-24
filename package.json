@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@bdsx/backup": "^1.1.0",
-    "@bdsx/economy-shop-main": "file:plugins/economy-shop-main",
     "@bdsx/economy-x": "file:plugins/economy-x",
     "bdsx": "file:bdsx",
     "blessed": "^0.1.81",
@@ -38,7 +37,8 @@
     "typescript": "^4.8.4",
     "unzipper": "^0.10.11",
     "@bdsx/simple-warp": "file:plugins/simple-warp",
-    "@bdsx/bdsx-sos9533scr": "file:plugins/bdsx-sos9533scr"
+    "@bdsx/bdsx-sos9533scr": "file:plugins/bdsx-sos9533scr",
+    "@bdsx/economy-shop": "file:plugins/economy-shop"
   },
   "devDependencies": {
     "@actions/core": "^1.10.0",
