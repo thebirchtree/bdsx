@@ -4,9 +4,9 @@ console.log("[example/index] LoadingExampleTemplates");
 
 /*import "./actor-effects";
 import "./attribute";
-import "./blockcustomname";
+import "./blockcustomname";*/
 import "./customcommand";
-*/
+
 import "./custommotd";
 /*
 import "./event-knockback";
@@ -34,7 +34,7 @@ import "./net-login";
 import "./net-rawpacket";
 import "./net-scorepacket";
 import "./net-sendhook";*/
-import "./net-transferserver";
+//import "./net-transferserver";
 /*
 import "./setblock";
 import "./settitle";

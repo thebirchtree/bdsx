@@ -7,7 +7,7 @@ import * as fs from "fs";
 
 interface player_data {
     money: number;
-    mendcoin: number;
+    xcoin: number;
     
 }
 
@@ -33,7 +33,7 @@ export namespace EconomyX {
 
         economy[player.getXuid()] = {
             money: 0,
-            mendcoin: 0,
+            xcoin: 0,
         };
         return true;
     }
@@ -201,7 +201,7 @@ export namespace XCoin {
         if (!economy.hasOwnProperty(player.getXuid())) EconomyX.addPlayer(player);
 
         let data = economy[player.getXuid()];
-        return data.mendcoin;
+        return data.xcoin;
     }
 
     /**Add player X-Coin. */
@@ -212,7 +212,7 @@ export namespace XCoin {
 
         let data = economy[player.getXuid()];
 
-        data.mendcoin+=amount;
+        data.xcoin+=amount;
         return true;
     }
 
@@ -224,12 +224,12 @@ export namespace XCoin {
 
         let data = economy[player.getXuid()];
 
-        if (data.mendcoin-amount < 0) {
-            data.mendcoin=0;
+        if (data.xcoin-amount < 0) {
+            data.xcoin=0;
             return true;
         }
 
-        data.mendcoin-=amount;
+        data.xcoin-=amount;
         return true;
     }
 
@@ -241,7 +241,7 @@ export namespace XCoin {
 
         let data = economy[player.getXuid()];
 
-        data.mendcoin=amount;
+        data.xcoin=amount;
         return true;
     }
 }
@@ -252,7 +252,7 @@ export namespace XCoinWeb {
         if (!economy.hasOwnProperty(xuid)) return -1;
 
         const data = economy[xuid];
-        return data.mendcoin;
+        return data.xcoin;
     }
 
     /**Add player X-Coin. */
@@ -262,7 +262,7 @@ export namespace XCoinWeb {
 
         let data = economy[xuid];
 
-        data.mendcoin+=amount;
+        data.xcoin+=amount;
         return true;
     }
 
@@ -273,12 +273,12 @@ export namespace XCoinWeb {
 
         let data = economy[xuid];
 
-        if (data.mendcoin-amount < 0) {
-            data.mendcoin=0;
+        if (data.xcoin-amount < 0) {
+            data.xcoin=0;
             return true;
         }
 
-        data.mendcoin-=amount;
+        data.xcoin-=amount;
         return true;
     }
 
@@ -289,7 +289,7 @@ export namespace XCoinWeb {
 
         let data = economy[xuid];
 
-        data.mendcoin=amount;
+        data.xcoin=amount;
         return true;
     }
 }

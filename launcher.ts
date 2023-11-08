@@ -16,7 +16,8 @@ console.log(
     "   | _ \\ |) \\__ \\  \n".white +
     "   |___/___/|___/  \n".white +
     "   /    /  \\    \\  \n".green +
-    "  /____/    \\____\\ \n".green
+    "  /____/    \\____\\ \n".green +
+    "Birchian VAriant".rainbow
     );
 
 (async () => {

@@ -34,7 +34,7 @@ command.register("money", send.text("command.money.d"))
     target: PlayerCommandSelector
 });
 
-command.register("transfer", send.text("command.transfer.d"))
+command.register("send", send.text("command.transfer.d"))
 .overload((p, o) => {
     const entity = o.getEntity();
     if (entity === null) return;
