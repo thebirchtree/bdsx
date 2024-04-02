@@ -247,7 +247,7 @@ function _launch(asyncResolve: () => void): void {
         nonOwnerPointerStructureManager!.dispose();
         decay(bedrockServer.structureManager);
     }, void_t);
-    asmcode.gameThreadInner = proc["<lambda_56977c8f513937af2eebbbd13c37f013>::operator()"]; // caller of ServerInstance::_update
+    asmcode.gameThreadInner = proc["<lambda_71c612a260bddd081da5a9a90baf1504>::operator()"]; // caller of ServerInstance::_update
     asmcode.free = dll.ucrtbase.free.pointer;
 
     // hook game thread
@@ -255,7 +255,7 @@ function _launch(asyncResolve: () => void): void {
 
     procHacker.patching(
         "hook-game-thread",
-        "std::thread::_Invoke<std::tuple<<lambda_56977c8f513937af2eebbbd13c37f013> >,0>", // caller of ServerInstance::_update
+        "std::thread::_Invoke<std::tuple<<lambda_71c612a260bddd081da5a9a90baf1504> >,0>", // caller of ServerInstance::_update
         6,
         asmcode.gameThreadHook, // original depended
         Register.rax,
@@ -263,10 +263,10 @@ function _launch(asyncResolve: () => void): void {
         // prettier-ignore
         [
             0x48, 0x8B, 0xD9, // mov rbx,rcx
-            0xE8, 0xFF, 0xFF, 0xFF, 0xFF, // call <bedrock_server.<lambda_56977c8f513937af2eebbbd13c37f013>::operator()>
-            0xE8, 0xFF, 0xFF, 0xFF, 0xFF, // call <bedrock_server._Cnd_do_broadcast_at_thread_exit>
+            0xE8, null, null, null, null, // call <bedrock_server.<lambda_71c612a260bddd081da5a9a90baf1504>::operator()>
+            0xE8, null, null, null, null, // call <bedrock_server._Cnd_do_broadcast_at_thread_exit>
         ],
-        [4, 8, 9, 13], // [4, 8), [9, 13)
+        // [4, 8, 9, 13], // [4, 8), [9, 13)
     );
 
     const instances = {} as {
@@ -283,7 +283,7 @@ function _launch(asyncResolve: () => void): void {
     );
     thisGetter.register(
         ServerNetworkSystem,
-        "??0ServerNetworkSystem@@QEAA@AEAVScheduler@@AEBV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@AEBUNetworkSystemToggles@@AEBV?$NonOwnerPointer@VNetworkDebugManager@@@Bedrock@@V?$ServiceReference@VServicesManager@@@@V?$not_null@V?$NonOwnerPointer@VNetworkSessionOwner@@@Bedrock@@@gsl@@@Z",
+        "??0ServerNetworkSystem@@QEAA@AEAVScheduler@@AEBV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@AEBUNetworkSystemToggles@@AEBV?$NonOwnerPointer@VNetworkDebugManager@@@Bedrock@@V?$ServiceReference@VServicesManager@@@@V?$not_null@V?$NonOwnerPointer@VNetworkSessionOwner@@@Bedrock@@@gsl@@UNetworkSettingOptions@@@Z",
         "serverNetworkSystem",
     );
     thisGetter.register(bd_server.DedicatedServer, "??0DedicatedServer@@QEAA@XZ", "dedicatedServer");
@@ -338,8 +338,8 @@ function _launch(asyncResolve: () => void): void {
      */
     procHacker.patching(
         "update-hook",
-        "<lambda_56977c8f513937af2eebbbd13c37f013>::operator()", // caller of ServerInstance::_update
-        0x93e,
+        "<lambda_71c612a260bddd081da5a9a90baf1504>::operator()", // caller of ServerInstance::_update
+        0x8b6,
         asmcode.updateWithSleep,
         Register.rax,
         true,
@@ -489,7 +489,7 @@ function _launch(asyncResolve: () => void): void {
         [Register.rcx, Register.rdx],
         [],
     );
-    procHacker.hooking(
+    const sendEvent = procHacker.hooking(
         "?sendEvent@ServerInstanceEventCoordinator@@QEAAXAEBV?$EventRef@U?$ServerInstanceGameplayEvent@X@@@@@Z",
         void_t,
         { name: "hook of shutdown" },
@@ -500,6 +500,7 @@ function _launch(asyncResolve: () => void): void {
             events.serverStop.fire();
             _tickCallback();
         }
+        sendEvent(_this, ev);
     });
 
     // graceful kill for Network port occupied

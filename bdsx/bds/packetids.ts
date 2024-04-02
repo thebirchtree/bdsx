@@ -85,12 +85,13 @@ export enum MinecraftPacketIds { // int32_t
     Event = 0x41,
     LegacyTelemetryEvent = 0x41,
     SpawnExperienceOrb = 0x42,
-    /** @deprecated Use ClientboundMapItemData instead, to match to official class name*/
+    /** @deprecated Use ClientboundMapItemData instead, to match the official class name*/
     MapItemData = 0x43,
     ClientboundMapItemData = 0x43,
     MapInfoRequest = 0x44,
     RequestChunkRadius = 0x45,
     ChunkRadiusUpdated = 0x46,
+    /** @deprecated removed */
     ItemFrameDropItem = 0x47,
     GameRulesChanged = 0x48,
     Camera = 0x49,
@@ -154,8 +155,8 @@ export enum MinecraftPacketIds { // int32_t
     LevelEventGeneric = 0x7c,
     LecternUpdate = 0x7d,
     // VideoStreamConnect_DEPRECATED = 0x7e,
-    AddEntity = 0x7f, // DEPRECATED
-    RemoveEntity = 0x80,
+    // AddEntity = 0x7f, removed
+    // RemoveEntity = 0x80, removed
     ClientCacheStatus = 0x81,
     OnScreenTextureAnimation = 0x82,
     MapCreateLockedCopy = 0x83,

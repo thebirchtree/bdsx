@@ -62,6 +62,7 @@ export enum BuildPlatform {
     NINTENDO = 12,
     XBOX = 13,
     WINDOWS_PHONE = 14,
+    Linux = 15,
 }
 /** @deprecated use {@link BuildPlatform}, matching to official name */
 export type DeviceOS = BuildPlatform;
@@ -79,6 +80,10 @@ export enum Encoding {
 export type TypeFromEncoding<T extends Encoding> = T extends Encoding.Buffer ? Uint8Array : string;
 
 export type TypedArrayBuffer = Uint8Array | Uint16Array | Uint32Array | Uint8ClampedArray | Int8Array | Int16Array | Int32Array | Float32Array | Float64Array;
+export interface TypedArrayBufferConstructor<T extends TypedArrayBuffer> {
+    new (count?: number): T;
+    readonly BYTES_PER_ELEMENT: number;
+}
 export type Bufferable = TypedArrayBuffer | ArrayBuffer | DataView;
 
 export type AnyFunction = (this: any, ...args: any[]) => any;
