@@ -23,6 +23,7 @@
     "@bdsx/backup": "^1.1.0",
     "@bdsx/bdsx-logger": "^1.1.1",
     "@bdsx/bdsx-sos9533scr": "file:plugins/bdsx-sos9533scr",
+    "@bdsx/broadcastx": "^1.0.1",
     "@bdsx/claim-pilot": "^1.5.7",
     "@bdsx/economy-shop": "file:plugins/economy-shop",
     "@bdsx/economy-x": "file:plugins/economy-x",
