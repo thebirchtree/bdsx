@@ -172,6 +172,7 @@ import {
 import { NetworkConnection, NetworkIdentifier, NetworkSystem, ServerNetworkHandler } from "./networkidentifier";
 import { Packet } from "./packet";
 import {
+    AnimateEntityPacket,
     AttributeData,
     BlockActorDataPacket,
     GameRulesChangedPacket,
@@ -1120,6 +1121,21 @@ Actor.prototype.setOwner = procHacker.js("?setOwner@Actor@@UEAAXUActorUniqueID@@
 Actor.prototype.getVariant = procHacker.js("?getVariant@Actor@@QEBAHXZ", int32_t, { this: Actor });
 Actor.prototype.setVariant = procHacker.js("?setVariant@Actor@@QEAAXH@Z", void_t, { this: Actor }, int32_t);
 Actor.prototype.setTarget = procHacker.jsv("??_7Actor@@6B@", "?setTarget@Actor@@UEAAXPEAV1@@Z", void_t, { this: Actor }, Actor);
+Actor.prototype.playAnimation = function (animation, options = {}) {
+    const pk = AnimateEntityPacket.allocate();
+    pk.animation = animation;
+    pk.nextState = options.nextState ?? "default";
+    pk.blendOutTime = options.blendOutTime ?? 0;
+    pk.stopExpression = options.stopExpression ?? "query.any_animation_finished";
+    pk.stopExpressionVersion = 1;
+    pk.controller = options.controller ?? "__runtime_controller";
+    pk.runtimeIds.push(this.getRuntimeID());
+    const players = options.players ?? bedrockServer.serverInstance.getPlayers();
+    for (const player of players) {
+        player.sendNetworkPacket(pk);
+    }
+    pk.dispose();
+};
 
 const getProjectileComponent = procHacker.js("??$tryGetComponent@VProjectileComponent@@@Actor@@QEAAPEAVProjectileComponent@@XZ", ProjectileComponent, null, Actor);
 const getPhysicsComponent = procHacker.js("??$tryGetComponent@VPhysicsComponent@@@Actor@@QEAAPEAVPhysicsComponent@@XZ", PhysicsComponent, null, Actor);
@@ -1376,6 +1392,7 @@ Mob.prototype.getToughnessValue = function () {
     return toughness;
 };
 Mob.prototype.isBlocking = procHacker.jsv("??_7Mob@@6B@", "?isBlocking@Mob@@UEBA_NXZ", bool_t, { this: Mob });
+Mob.prototype.shouldDropDeathLoot = procHacker.jsv("??_7Mob@@6B@", "?shouldDropDeathLoot@Mob@@UEBA_NXZ", bool_t, { this: Mob });
 
 OwnerStorageEntity.prototype._getStackRef = procHacker.js("?_getStackRef@OwnerStorageEntity@@IEBAAEAVEntityContext@@XZ", EntityContext, {
     this: OwnerStorageEntity,
@@ -2682,6 +2699,7 @@ PlayerInventory.prototype.removeResource = function (item: ItemStack, requireExa
     return FillingContainer$removeResource(container, item, requireExactAux, requireExactData, maxCount);
 };
 PlayerInventory.prototype.canAdd = procHacker.js("?canAdd@PlayerInventory@@QEBA_NAEBVItemStack@@@Z", bool_t, { this: PlayerInventory }, ItemStack);
+PlayerInventory.prototype.dropAllOnDeath = procHacker.js("?dropAllOnDeath@PlayerInventory@@QEAAX_N@Z", void_t, { this: PlayerInventory }, bool_t);
 
 ItemDescriptor.prototype[NativeType.ctor] = procHacker.js("??0ItemDescriptor@@QEAA@XZ", void_t, { this: ItemDescriptor });
 ItemDescriptor.prototype[NativeType.dtor] = procHacker.js("??1ItemDescriptor@@UEAA@XZ", void_t, { this: ItemDescriptor });

@@ -205,6 +205,21 @@ export enum ActorType {
     Bogged = 144 | SkeletonMonster,
 }
 
+export enum ActorInitializationMethod {
+    /** For existing entities loaded. */
+    Loaded = 1,
+    /** For spawned entities by spawn egg, natural, or anything else. */
+    Spawned,
+    /** For child entities of other entities. e.g. cows making a cow or slimes making smaller slimes after dying. */
+    Born,
+    /** For entities which or transformed into another entity. e.g. Villager -> Witch, Piglin -> Zombie Piglin, Zombie Villager -> Villager */
+    Transformed,
+    /** For player joining, before initialized*/
+    PlayerJoined,
+    /** For entities created by an event, e.g. a Wandering trader spawning llamas. */
+    Event = 6,
+}
+
 @nativeClass({ size: 0xb0, structSymbol: true })
 export class ActorDefinitionIdentifier extends NativeClass {
     @nativeField(CxxString)
@@ -553,6 +568,19 @@ export class EntityContext extends AbstractClass {
 export const EntityContextBase = EntityContext;
 /** @deprecated merged into EntityContext */
 export type EntityContextBase = EntityContext;
+
+interface PlayAnimationOptions {
+    /** Specifies the state to transition to. */
+    nextState?: string;
+    /** Amount of time to fade out after an animation stops. */
+    blendOutTime?: number;
+    /** Specifies a Molang expression for when this animation should complete. */
+    stopExpression?: string;
+    /** Specifies a controller to use that has been defined on the entity. */
+    controller?: string;
+    /** A list of players the animation will be visible to. */
+    players?: Player[];
+}
 
 export class Actor extends AbstractClass {
     vftable: VoidPointer;
@@ -1541,6 +1569,10 @@ export class Actor extends AbstractClass {
         abstract();
     }
 
+    playAnimation(animation: string, options?: PlayAnimationOptions): void {
+        abstract();
+    }
+
     protected _tryGetComponent(comp: string): any | null {
         abstract();
     }
@@ -1678,7 +1710,11 @@ export class Mob extends Actor {
         abstract();
     }
 
-    isBlocking(): boolean {
+    isBlocking(): bool_t {
+        abstract();
+    }
+
+    shouldDropDeathLoot(): bool_t {
         abstract();
     }
 }
